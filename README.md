@@ -1,10 +1,10 @@
-# 8-bit Single-Cycle RISC-V–Inspired CPU with Custom Display Interface
+# 8-bit Single-Cycle CPU with 16-bit Instruction Format (Logisim)
 
 ## Overview
-This project implements a **custom 8-bit single-cycle CPU** designed and developed in **Verilog HDL**, using a **16-bit wide instruction format**.  
-The processor was built from scratch with a focus on **instruction execution flow, control logic, and peripheral interfacing**, and was extended to communicate with **custom character and numeric display modules using self-designed communication protocols**.
+This project implements a **custom 8-bit single-cycle CPU** designed and built using **Logisim**, with a **16-bit wide instruction format**.  
+The CPU was developed from first principles to understand **processor architecture, datapath design, control logic, and peripheral interfacing**, and was extended to drive **custom character and numeric display units using self-designed communication protocols**.
 
-The project emphasizes **low-level digital system design**, including datapath construction, control signal generation, and timing-aware interfacing with external hardware.
+The project emphasizes **architectural clarity and system-level thinking**, rather than HDL implementation, making it a strong demonstration of core computer organization concepts.
 
 ---
 
@@ -12,8 +12,7 @@ The project emphasizes **low-level digital system design**, including datapath c
 - **Data width:** 8-bit  
 - **Instruction width:** 16-bit  
 - **Execution model:** Single-cycle  
-- **Design language:** Verilog HDL  
-- **Target platform:** FPGA (tested using Intel Quartus Prime)
+- **Design tool:** Logisim  
 
 ### Core Components
 - Program Counter (PC)
@@ -22,75 +21,79 @@ The project emphasizes **low-level digital system design**, including datapath c
 - Arithmetic Logic Unit (ALU)
 - Control Unit
 - Data Memory
-- Custom I/O Interface Controller
+- Custom I/O Interface Logic
 
-The CPU follows a **single-cycle datapath**, where instruction fetch, decode, execute, memory access, and write-back are completed within one clock cycle.
+All stages of instruction execution—fetch, decode, execute, memory access, and write-back—are completed within **a single clock cycle**.
+
+---
+
+## Instruction Format
+The CPU uses a **16-bit instruction encoding** to support a richer control space while operating on 8-bit data.
+
+Typical instruction fields include:
+- Opcode
+- Register specifiers
+- Immediate / control fields
+
+Instruction decoding is implemented using combinational logic constructed from basic gates and multiplexers within Logisim.
 
 ---
 
 ## Instruction Set
-The processor supports a **custom RISC-V–inspired instruction set**, adapted for:
-- **8-bit data operations**
-- **16-bit instruction encoding**
+The processor supports a **custom instruction set inspired by RISC-style architectures**, adapted for an 8-bit datapath.
 
 ### Instruction Categories
 - Arithmetic and logical operations  
 - Register-to-register instructions  
 - Immediate-based instructions  
-- Control flow instructions (branches / jumps)  
+- Control flow instructions (branch and jump)  
 - Load and store instructions  
 
-Instruction decoding and control signal generation are implemented using combinational logic derived from opcode and function fields within the 16-bit instruction word.
+Control signals are generated based on instruction decoding and drive the datapath accordingly.
 
 ---
 
 ## Custom Display Interface
 A key feature of this project is the design of **custom communication protocols** to interface the CPU with:
-- A character display module  
-- A numeric display module  
+- A character display unit  
+- A numeric display unit  
 
 ### Design Highlights
-- Proprietary protocol designed to meet timing and resource constraints  
-- Dedicated control logic for data framing and synchronization  
-- Clear separation between CPU core logic and peripheral interface logic  
+- Proprietary protocols designed specifically for this CPU  
+- Explicit control over data framing and timing  
+- Dedicated interface logic separated from the CPU core  
 
-This approach avoids reliance on standard protocols and demonstrates **protocol-level design, synchronization, and timing analysis**.
+This demonstrates an understanding of **protocol design, synchronization, and peripheral control**.
 
 ---
 
-## Verification & Debugging
-- Functional verification performed through **simulation** and FPGA testing  
-- Internal signals monitored using **SignalTap Logic Analyzer**  
-- Incremental module-level testing before full system integration  
+## Verification & Testing
+- Manual and step-by-step verification of instruction execution in Logisim  
+- Observation of internal signals (registers, ALU outputs, control lines)  
+- Testing of custom display output for correctness and timing  
 
-Special attention was given to:
-- Correct instruction execution  
-- Control signal timing  
-- Reliable communication with external display peripherals  
+The design was verified incrementally at the module level before full system integration.
 
 ---
 
 ## Tools Used
-- **Verilog HDL**
-- **Intel Quartus Prime**
-- **SignalTap Logic Analyzer**
-- ModelSim (for simulation)
+- **Logisim**
 
 ---
 
 ## Key Learnings
 - Designing an **8-bit processor datapath** with a wider instruction encoding  
-- Translating instruction-level behavior into hardware control signals  
-- Designing and debugging **custom hardware communication protocols**  
-- Understanding timing, synchronization, and system-level integration on FPGA  
+- Translating instruction semantics into hardware-level control logic  
+- Understanding single-cycle CPU timing and limitations  
+- Designing and interfacing custom peripherals using self-defined protocols  
 
 ---
 
 ## Future Improvements
-- Pipelined version of the CPU  
-- Interrupt support  
+- Multi-cycle or pipelined version of the CPU  
+- Interrupt handling support  
 - Expansion of the instruction set  
-- Standardized peripheral bus interface  
+- Migration to HDL (Verilog) and FPGA implementation  
 
 ---
 
@@ -98,8 +101,7 @@ Special attention was given to:
 **Abhinav Krishna**  
 Electronics and Communication Engineering Undergraduate  
 
-Interests:  
-- Digital Electronics & FPGA Design  
-- Processor Architecture  
+Interests:
+- Digital Electronics & Computer Architecture  
 - Embedded Systems  
 - Hardware-Aware Cybersecurity
