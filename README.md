@@ -1,5 +1,8 @@
 # 8-bit Single-Cycle CPU with 16-bit Instruction Format (Logisim)
 
+## CPU Datapath
+![CPU Datapath](images/CPU.png)
+
 ## Overview
 This project implements a **custom 8-bit single-cycle CPU** designed and built using **Logisim**, with a **16-bit wide instruction format**.  
 The CPU was developed from first principles to understand **processor architecture, datapath design, control logic, and peripheral interfacing**, and was extended to drive **custom character and numeric display units using self-designed communication protocols**.
